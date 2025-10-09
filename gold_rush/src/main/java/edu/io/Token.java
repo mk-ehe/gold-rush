@@ -1,4 +1,4 @@
-package gold_rush.src.main.java.edu.io;
+package edu.io;
 
 public class Token {
 
