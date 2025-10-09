@@ -1,0 +1,15 @@
+package gold_rush.src.main.java.edu.io;
+
+public class Token {
+
+    public String label;
+
+    public Token(String label){
+        this.label = label;
+    } 
+
+    @Override
+    public String toString() {
+        return label;
+    }
+}
