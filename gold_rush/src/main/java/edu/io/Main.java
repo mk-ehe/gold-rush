@@ -5,7 +5,7 @@ public class Main {
         System.out.println("Gold Rush");
         Board board = new Board(10);
         board.clean();
-        board.placeToken(0, 2, "\uD83D\uDCB0");
+        board.placeToken(0, 2, new Token("웃"));
         board.display();
     }
 }
