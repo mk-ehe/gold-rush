@@ -1,5 +1,8 @@
 package edu.io;
 
+import edu.io.token.EmptyToken;
+import edu.io.token.Token;
+
 public class Board {
 
     public Token[][] grid;
@@ -15,10 +18,14 @@ public class Board {
         clean();
     }
 
+    public record Coords(int row, int col) {
+    }
+
     public void clean() {
+        EmptyToken emp = new EmptyToken();
         for (int row = 0; row < grid.length; row++) {
             for (int col = 0; col < grid[row].length; col++) {
-                grid[row][col] = new Token("・");
+                grid[row][col] = emp;
             }
         }
     }
@@ -32,23 +39,16 @@ public class Board {
         }
     }
 
-    public Token square(int row, int col) {
-        return grid[row][col];
+    public Token peekToken(int row, int col) {
+        return grid[col][row];  //MIAŁEM [ROW][COL]
     }
 
     public void placeToken(int row, int col, Token symbol) {
-        if (square(row, col).label.equals("・")) {
+        Token current = peekToken(row, col);
+        if (current instanceof EmptyToken) {
             grid[row][col] = symbol;
-        }
-        else{
+        } else {
             System.out.println("Pole zajęte.");
         }
-    }
-
-    public static void main(String[] args) {
-        Board board = new Board(10);
-        board.clean();
-        board.placeToken(0, 2, new Token("웃"));
-        board.display();
     }
 }
