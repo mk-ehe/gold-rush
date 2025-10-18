@@ -18,6 +18,10 @@ public class Board {
         clean();
     }
 
+    public int size() {
+        return size;
+    }
+
     public record Coords(int row, int col) {
     }
 
@@ -39,7 +43,7 @@ public class Board {
         }
     }
 
-    public Token peekToken(int row, int col) {
+    public Token peekToken(int col, int row) {
         return grid[col][row];  //MIAŁEM [ROW][COL]
     }
 

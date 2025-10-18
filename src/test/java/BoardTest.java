@@ -30,7 +30,7 @@ class BoardTest {
     @Test
     void clean_method_works() {
         board.placeToken(1, 2, new GoldToken());
-        board.placeToken(board.size-1, board.size-1,
+        board.placeToken(board.size()-1, board.size-1,
                 new GoldToken());
         board.clean();
         Assertions.assertTrue(_is_board_clean());
@@ -43,7 +43,7 @@ class BoardTest {
 
     // -- utils
     boolean _is_board_clean() {
-        int size = board.size;
+        int size = board.size();
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
                 if (!board.peekToken(col, row).label()
