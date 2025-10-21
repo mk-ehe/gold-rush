@@ -40,11 +40,11 @@ public class PlayerToken extends Token {
             int new_col = col;
 
             switch (dir) {
-                case Move.UP : new_row--; break;
-                case Move.DOWN : new_row++; break;
-                case Move.LEFT : new_col--; break;
-                case Move.RIGHT : new_col++; break;
-                case Move.NONE : return;
+                case UP : new_row--; break;
+                case DOWN : new_row++; break;
+                case LEFT : new_col--; break;
+                case RIGHT : new_col++; break;
+                case NONE : return;
                 default : System.out.println("Unknown direction.");}
 
             if (new_row >= board.size || new_row < 0 || new_col >= board.size || new_col < 0) {
