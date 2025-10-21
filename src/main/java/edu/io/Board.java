@@ -44,11 +44,11 @@ public class Board {
     }
 
     public Token peekToken(int col, int row) {
-        return grid[col][row];  //MIAŁEM [ROW][COL]
+        return grid[row][col];  //MIAŁEM [ROW][COL]
     }
 
-    public void placeToken(int row, int col, Token symbol) {
-        Token current = peekToken(row, col);
+    public void placeToken(int col, int row, Token symbol) {
+        Token current = grid[row][col];
         if (current instanceof EmptyToken) {
             grid[row][col] = symbol;
         } else {
