@@ -14,7 +14,7 @@ public class GoldToken extends Token {
         if (amount >= 0.0) {
             this.amount = amount;
         }  else {
-            throw new IllegalArgumentException("Gold size cannot be 0.");
+            throw new IllegalArgumentException("Gold amount cannot be below 0.");
         }
     }
 

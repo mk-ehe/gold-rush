@@ -24,7 +24,7 @@ public class Player {
         if (gold >= 0) {
             this.gold += gold;
         } else {
-            throw new IllegalArgumentException("Gold amount must be greater than 0.");
+            throw new IllegalArgumentException("Gold amount cannot be below 0.");
         }
     }
 
@@ -33,10 +33,10 @@ public class Player {
             if (this.gold - gold >= 0) {
                 this.gold -= gold;
             } else {
-                throw new IllegalArgumentException("Gold amount must be greater than 0.");
+                throw new IllegalArgumentException("Gold amount cannot be below 0.");
             }
         } else {
-            throw new IllegalArgumentException("Gold amount cannot go below zero");
+            throw new IllegalArgumentException("Gold amount cannot be below 0.");
         }
     }
 
