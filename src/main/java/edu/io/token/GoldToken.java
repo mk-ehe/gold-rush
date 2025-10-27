@@ -2,14 +2,23 @@ package edu.io.token;
 
 public class GoldToken extends Token {
 
-    public int size;
+    private double amount;
 
     public GoldToken() {
-         super(Label.GOLD_TOKEN_LABEL);
+        super(Label.GOLD_TOKEN_LABEL);
+        this.amount = 1.0;
     }
 
-    public GoldToken(int size) {
+    public GoldToken(double amount) {
         super(Label.GOLD_TOKEN_LABEL);
-        this.size = size;
+        if (amount >= 0.0) {
+            this.amount = amount;
+        }  else {
+            throw new IllegalArgumentException("Gold size cannot be 0.");
+        }
+    }
+
+    public double amount() {
+        return amount;
     }
 }

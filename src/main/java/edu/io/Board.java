@@ -44,7 +44,7 @@ public class Board {
     }
 
     public Token peekToken(int col, int row) {
-        return grid[row][col];  //MIAŁEM [ROW][COL]
+        return grid[row][col];
     }
 
     public void placeToken(int col, int row, Token symbol) {
@@ -52,7 +52,18 @@ public class Board {
         if (current instanceof EmptyToken) {
             grid[row][col] = symbol;
         } else {
-            System.out.println("Pole zajęte.");
+            System.out.println("Field already taken.");
         }
+    }
+
+    public Coords getAvailableSquare() {
+        for (int row = 0; row < grid.length; row++) {
+            for (int col = 0; col < grid[row].length; col++) {
+                if (grid[row][col] instanceof EmptyToken) {
+                    return new Coords(row, col);
+                }
+            }
+        }
+        throw new IllegalStateException("Field is not available.");
     }
 }
