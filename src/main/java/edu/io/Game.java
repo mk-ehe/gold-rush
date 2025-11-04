@@ -1,6 +1,8 @@
 package edu.io;
+import edu.io.token.GoldToken;
 import edu.io.token.PlayerToken;
 import java.util.Scanner;
+import edu.io.player.Player;
 
 public class Game {
     private Board board;
@@ -18,10 +20,12 @@ public class Game {
 
     public void start() {
         Scanner input = new Scanner(System.in);
-        board.display();
+        board.placeToken(4, 4, new GoldToken());
 
         while (true) {
-            System.out.print("\nMoves: W -> UP, S -> DOWN, A -> LEFT, D -> RIGHT, Anything else -> pass: ");
+            System.out.println("\nGold amount: "+player.gold.amount());
+            board.display();
+            System.out.print("Moves: W -> UP, S -> DOWN, A -> LEFT, D -> RIGHT, Anything else -> pass: ");
             String direction = input.nextLine().toUpperCase();
 
             try {
@@ -35,7 +39,6 @@ public class Game {
             } catch (IllegalArgumentException e) {
                 System.out.println("Cannot move outside the board!");
             }
-            board.display();
         }
     }
 }

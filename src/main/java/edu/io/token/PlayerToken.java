@@ -2,7 +2,7 @@ package edu.io.token;
 
 import edu.io.Board;
 import edu.io.Board.Coords;
-import edu.io.Player;
+import edu.io.player.Player;
 
 public class PlayerToken extends Token {
 
@@ -55,7 +55,6 @@ public class PlayerToken extends Token {
             board.grid[row][col] = new EmptyToken();
             board.grid[new_row][new_col] = this;
             row = new_row;
-            col = new_col;
-            
+            col = new_col;  
     }
 }
