@@ -64,7 +64,7 @@ public class PickaxeToken extends Token implements Tool, Repairable {
     }
 
     public PickaxeToken ifBroken(Runnable action) {
-        if (isBroken() && withToken instanceof GoldToken) {
+        if (isBroken()) {
             action.run();
         }
         return this;
@@ -75,6 +75,6 @@ public class PickaxeToken extends Token implements Tool, Repairable {
     }
 
     public void repair() {
-        this.durability = 2;
+        this.durability += 2;
     }
 }
