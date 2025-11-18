@@ -36,17 +36,17 @@ public class Game {
         board.display();
 
         while (true) {
-            System.out.println("Moves: W -> UP, S -> DOWN, A -> LEFT, D -> RIGHT, Anything else -> pass: ");
+            System.out.println("\nGold amount: "+player.gold.amount());
+            System.out.print("Moves: W -> UP, S -> DOWN, A -> LEFT, D -> RIGHT, Anything else -> pass: ");
             String direction = scanner.nextLine().toUpperCase();
-
+            
             try {
                 switch (direction) {
                     case "W": player.token().move(PlayerToken.Move.UP); break;
                     case "S": player.token().move(PlayerToken.Move.DOWN); break;
                     case "A": player.token().move(PlayerToken.Move.LEFT); break;
                     case "D": player.token().move(PlayerToken.Move.RIGHT); break;
-                    case "E": player.token().move(PlayerToken.Move.NONE); break;
-                    default: System.out.println("Invalid direction."); break;
+                    default: System.out.println(PlayerToken.Move.NONE); break;
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println("Cannot move outside the board");
