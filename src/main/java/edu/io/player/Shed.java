@@ -1,13 +1,15 @@
 package edu.io.player;
 
-import edu.io.interfaces.Tool;
 import java.util.Stack;
+
+import edu.io.interfaces.Tool;
+
 
 public class Shed {
     private Stack<Tool> tools;
 
     public Shed () {
-        this.tools = new Stack<>();
+        tools = new Stack<>();
     }
 
     public boolean isEmpty() {

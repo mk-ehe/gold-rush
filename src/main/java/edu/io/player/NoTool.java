@@ -15,7 +15,7 @@ public class NoTool implements Tool {
     }
 
     @Override
-    public Tool  ifBroken(Runnable action) {
+    public Tool ifBroken(Runnable action) {
         return this;
     }
 

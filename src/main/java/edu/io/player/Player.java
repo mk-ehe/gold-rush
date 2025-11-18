@@ -1,25 +1,43 @@
 package edu.io.player;
 
+import java.util.Objects;
+
 import edu.io.interfaces.Repairable;
 import edu.io.interfaces.Tool;
-import edu.io.token.*;
+import edu.io.token.AnvilToken;
+import edu.io.token.EmptyToken;
+import edu.io.token.GoldToken;
+import edu.io.token.PickaxeToken;
+import edu.io.token.PlayerToken;
+import edu.io.token.Token;
+import edu.io.token.WaterToken;
+
 
 public class Player {
     private PlayerToken token;
-    public Gold gold = new Gold();
-    private Shed shed = new Shed();
+    public final Gold gold = new Gold();
+    public final Shed shed = new Shed();
+    public final Vitals vitals = new Vitals();
 
     public PlayerToken token() {
         return token;
     }
 
     public void assignToken(PlayerToken token) {
-        this.token = token;
+        this.token = Objects.requireNonNull(token, "Token cannot be null");
     }
 
     public void interactWithToken(Token token) {
+        Objects.requireNonNull(token, "Token cannot be null");
+
+        if (!vitals.isAlive()) {
+            throw new IllegalStateException("Player is dead");
+        }
+
         if (token instanceof GoldToken goldToken) {
             Tool tool = shed.getTool();
+            vitals.dehydrate(VitalsValues.DEHYDRATION_GOLD);
+
             if (tool instanceof PickaxeToken pickaxeToken) {
                 pickaxeToken.useWith(goldToken)
                         .ifWorking(() -> {
@@ -35,12 +53,21 @@ public class Player {
             } else {
                 gold.gain(goldToken.amount());
             }
-        } else if (token instanceof PickaxeToken pickaxeToken) {
+        }
+        else if (token instanceof PickaxeToken pickaxeToken) {
             shed.add(pickaxeToken);
-        } else if (token instanceof AnvilToken) {
+        }
+        else if (token instanceof AnvilToken anvilToken) {
+            vitals.dehydrate(VitalsValues.DEHYDRATION_ANVIL);
             if (shed.getTool() instanceof Repairable tool) {
                 tool.repair();
             }
+        }
+        else if (token instanceof EmptyToken emptyToken) {
+            vitals.dehydrate(VitalsValues.DEHYDRATION_MOVE);
+        }
+        else if (token instanceof WaterToken waterToken) {
+            vitals.hydrate(waterToken.amount());
         }
     }
 }
